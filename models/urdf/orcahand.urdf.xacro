@@ -27,7 +27,7 @@
       <visual name="visual_tower_main_mesh">
          <origin xyz="${s * 0.04069509610470536} -0.00012511806280993186 0.02312294830988657" rpy="-0.007252153364137093 ${s * -0.004356332895580239} ${s * 1.533990149039079}"/>
          <geometry>
-            <mesh filename="package://orcahand_description/assets/urdf/visual/tower_main_mesh.stl"
+            <mesh filename="${rospackage_path}/visual/tower_main_mesh.stl"
                   scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
             />
          </geometry>
@@ -119,7 +119,7 @@
       <visual name="visual_tower_camera_mesh">
          <origin xyz="${s * 0.04141561887638722} 0.052825801794652016 -0.019856742052109723" rpy="-3.066013393320364 ${s * -1.0811766886677918} ${s * -1.6762365509261419}"/>
          <geometry>
-            <mesh filename="package://orcahand_description/assets/urdf/visual/tower_camera_mesh.stl"
+            <mesh filename="${rospackage_path}/visual/tower_camera_mesh.stl"
              scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"/>
          </geometry>
          <material name="white"/>

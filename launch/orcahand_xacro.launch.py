@@ -49,7 +49,8 @@ def generate_launch_description():
     robot_description = Command([
         'xacro ', orcahand_description_path, 
         ' chirality:=', LaunchConfiguration('chirality'),
-        ' prefix:=', "right_",
+        ' prefix:=', "",
+        ' extension:=', "true",
     ])
 
 

@@ -13,7 +13,10 @@
   <depend>urdf</depend>
   <depend>xacro</depend>
 
-  <export>
+  <!-- <export>
     <architecture_independent/>
+  </export> -->
+  <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>

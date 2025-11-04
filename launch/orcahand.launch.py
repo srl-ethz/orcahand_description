@@ -54,8 +54,8 @@ def generate_launch_description():
         ),
 
         Node(
-            package='joint_state_publisher',
-            executable='joint_state_publisher',
+            package='joint_state_publisher_gui',
+            executable='joint_state_publisher_gui',
             name='joint_state_publisher',
             output='screen',
         ),

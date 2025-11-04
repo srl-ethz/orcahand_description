@@ -9,7 +9,7 @@
   <xacro:property name="extension" value="$(arg extension)"/>
   <xacro:property name="chirality" value="$(arg chirality)"/>
   <xacro:property name="s" value="${-1 if chirality == 'left' else 1}"/>
-  <xacro:property name="rospackage_path" value="package://orcahand_description/assets/urdf/${chirality}"/>
+  <xacro:property name="rospackage_path" value="package://orcahand_description/assets/urdf/right"/>
 
    <link name="${prefix}root">
       <inertial>
@@ -25,44 +25,56 @@
          <inertia ixx="0.00150422" iyy="0.00125262" izz="0.0007962" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="visual_tower_main_mesh">
-         <origin xyz="${s * 0.04069509610470536} -0.00012511806280993186 0.02312294830988657" rpy="${s * -0.007252153364137093} -0.004356332895580239 ${'1.6076025045507145' if chirality == 'left' else '1.533990149039079'}"/>
+         <origin xyz="${s * 0.04069509610470536} -0.00012511806280993186 0.02312294830988657" rpy="-0.007252153364137093 ${s * -0.004356332895580239} ${s * 1.533990149039079}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/tower_main_mesh.stl"/>
+            <mesh filename="package://orcahand_description/assets/urdf/right/visual/tower_main_mesh.stl"
+                  scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="collision_tower_main_mesh">
          <origin xyz="${s * 0.04102610596606573} 0.0008755408110132971 0.03758955025925282" rpy="0.0663641604020242 ${-s * 0.10532695421927696} ${s * -0.7765909134463538}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/tower_main_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/tower_main_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="visual_tower_hull_mesh">
-         <origin xyz="${'-0.040379932753305224 -3.7268131082661286e-06 0.009339292178809312' if chirality == 'left' else '0.04062006698890873 -3.726678941555769e-06 0.009339292204050375'}" rpy="${'1.5694791593330333 0.00015194626808745504 -0.0006505202080002714' if chirality == 'left' else '1.5694791585075034 0.00015194814647356836 -0.0006505124711437826'}"/>
+         <origin xyz="${s * 0.04062006698890873} -3.726678941555769e-06 0.009339292204050375" rpy="1.5694791585075034 ${s * 0.00015194814647356836} ${s * -0.0006505124711437826}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/tower_hull_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/tower_hull_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="collision_tower_hull_mesh">
-         <origin xyz="${'-0.04038115277822704 7.083580336650913e-06 0.009306225237370189' if chirality == 'left' else '0.04061884697236149 7.083739226185091e-06 0.009306225228503611'}" rpy="${'1.5691929968226592 -6.931705689772194e-05 -0.001291690818031932' if chirality == 'left' else '1.5691929949477865 -6.931644826568828e-05 -0.0012916867662787768'}"/>
+         <origin xyz="${s * 0.04061884697236149} 7.083739226185091e-06 0.009306225228503611" rpy="1.5691929949477865 ${s * -6.931644826568828e-05} ${s * -0.0012916867662787768}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/tower_hull_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/tower_hull_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="visual_tower_text_mesh">
-         <origin xyz="${'-0.04038247369298952 4.361834990936047e-06 0.027377310183930685' if chirality == 'left' else '0.040617526582081696 4.362558106779257e-06 0.02737731026837054'}" rpy="${'-5.88418203051333e-14 -1.5702411380021881 1.598818649875384' if chirality == 'left' else '8.992806499463768e-14 -1.570241143557443 1.5988186561911613'}"/>
+         <origin xyz="${s * 0.040617526582081696} 4.362558106779257e-06 0.02737731026837054" rpy="8.992806499463768e-14 ${s * -1.570241143557443} ${s * 1.5988186561911613}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/tower_text_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/tower_text_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="collision_tower_text_mesh">
-         <origin xyz="${'-0.04031654534641286 -0.0011250821606647178 0.027716099560264867' if chirality == 'left' else '0.04068345506360967 -0.0011250828560853416 0.027716099517902396'}" rpy="${'-2.239661802466473 -1.5545673282960581 -2.44807600818014' if chirality == 'left' else '-2.239658800831686 -1.5545672668594075 -2.4480790171423275'}"/>
+         <origin xyz="${s * 0.04068345506360967} -0.0011250828560853416 0.027716099517902396" rpy="-2.239658800831686 ${s * -1.5545672668594075} ${s * -2.4480790171423275}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/tower_text_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/tower_text_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -71,42 +83,53 @@
       <visual name="visual_tower_fans_mesh">
          <origin xyz="${s * 0.0937464851642263} -7.333906795588065e-05 0.007302881628386407" rpy="0.007368589590845024 ${s * 0.003155430003398685} ${s * 0.002439910618462611}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/tower_fans_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/tower_fans_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="collision_tower_fans_mesh">
          <origin xyz="${s * 0.09363557490715463} -8.389280125979868e-05 0.007667379216642167" rpy="0.005482193788632295 ${s * 0.004072983473719427} ${s * -0.007158680095836076}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/tower_fans_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/tower_fans_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="visual_tower_u2d2_mesh">
          <origin xyz="${s * -0.012411919130245945} 0.0016444826825456232 -0.017176262543363695" rpy="1.9248601461816697 ${s * 0.03942618910803675} ${s * 0.09532348749637565}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/tower_u2d2_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/tower_u2d2_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="collision_tower_u2d2_mesh">
          <origin xyz=" ${s * -0.010637828550943964} 0.00323315623973064 -0.016564434073768834" rpy="1.9254973571203653 ${s * -0.010117808892087687} ${s * 0.1004013246446912}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/tower_u2d2_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/tower_u2d2_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="visual_tower_camera_mesh">
-         <origin xyz="${s * 0.04141561887638722} 0.052825801794652016 -0.019856742052109723" rpy="${'3.0660133933203646 -1.0811766886677918 -1.4653561026636517' if chirality == 'left' else '-3.066013393320364 -1.0811766886677918 -1.6762365509261419'}"/>
+         <origin xyz="${s * 0.04141561887638722} 0.052825801794652016 -0.019856742052109723" rpy="-3.066013393320364 ${s * -1.0811766886677918} ${s * -1.6762365509261419}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/tower_camera_mesh.stl"/>
+            <mesh filename="package://orcahand_description/assets/urdf/right/visual/tower_camera_mesh.stl"
+             scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"/>
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="collision_tower_camera_mesh">
-         <origin xyz="${s * 0.042893192852471285} 0.07588858343086753 -0.0036651034799500375" rpy="${'2.01550125906464 -1.3561455079929272 1.2201676290450096' if chirality == 'left' else '1.1260913945251536 -1.3561455079929272 1.9214250245447837'}"/>
+         <origin xyz="${s * 0.042893192852471285} 0.07588858343086753 -0.0036651034799500375" rpy="1.1260913945251536 ${s * -1.3561455079929272} ${s * 1.9214250245447837}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/tower_camera_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/tower_camera_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -136,30 +159,38 @@
          <inertia ixx="1.612e-05" iyy="1.151e-05" izz="6.72e-06" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="visual_palm_mesh">
-         <origin xyz="${s * 0.0015568393804010381} 0.00032366355975666324 -0.011896430343868667" rpy="${'1.129867435813943 0.047179539585598285 1.6102096314336944' if chirality == 'left' else '2.01172521777585 0.047179539585598285 1.531383022156099'}"/>
+         <origin xyz="${s * 0.0015568393804010381} 0.00032366355975666324 -0.011896430343868667" rpy="2.01172521777585 ${s * 0.047179539585598285} ${s * 1.531383022156099}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/palm_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/palm_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_palm_mesh">
-         <origin xyz="${s * 0.0015796019462848588} 0.0001376248446814945 -0.011923873250196919" rpy="${'1.1152544578109254 0.044917456181218895 1.6097449018547754' if chirality == 'left' else '2.026338195778868 0.044917456181218895 1.531847751735018'}"/>
+         <origin xyz="${s * 0.0015796019462848588} 0.0001376248446814945 -0.011923873250196919" rpy="2.026338195778868 ${s * 0.044917456181218895} ${s * 1.531847751735018}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/palm_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/palm_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_palm_skin_mesh">
-         <origin xyz="${s * 0.005673309514830851} -0.0012702684906836111 -0.001744430321194409" rpy="${'1.3749868042172595 0.1563942094199331 1.4910721532304578' if chirality == 'left' else '1.7666058493725336 0.1563942094199331 1.6505205003593353'}"/>
+         <origin xyz="${s * 0.005673309514830851} -0.0012702684906836111 -0.001744430321194409" rpy="1.7666058493725336 ${s * 0.1563942094199331} ${s * 1.6505205003593353}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/palm_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/palm_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_palm_skin_mesh">
-         <origin xyz="${s * 0.008013832397891144} -0.001293701510845759 -0.0015696747425978242" rpy="${'1.2575307342268869 0.16785003095386508 1.457600562026935' if chirality == 'left' else '1.8840619193629062 0.16785003095386486 1.6839920915628581'}"/>
+         <origin xyz="${s * 0.008013832397891144} -0.001293701510845759 -0.0015696747425978242" rpy="1.8840619193629062 ${s * 0.16785003095386486} ${s * 1.6839920915628581}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/palm_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/palm_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -175,7 +206,7 @@
       <parent link="${prefix}tower"/>
       <child link="${prefix}wrist_jointbody"/>
       <origin xyz="${s * 0.04063} 0.0 0.10486999999999999" rpy="0.0 0.0 0.0"/>
-      <axis xyz="${s * 1.0} 0.0 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
       <limit lower="${-0.8972 if chirality == 'left' else -0.6736}" upper="${0.6736 if chirality == 'left' else 0.8972}" effort="100" velocity="100"/>
    </joint>
    <joint type="fixed" name="${prefix}wrist_offset">
@@ -192,14 +223,18 @@
       <visual name="${prefix}visual_thumb_mp_mesh">
          <origin xyz="${s * 0.0026672782758389094} -3.6617030073895996e-06 0.0032021510136003503" rpy="-0.00450638440425983 ${s * -0.0029041941261005455} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/thumb_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/thumb_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_thumb_mp_mesh">
          <origin xyz="${s * 0.0025186274059406416} 1.1817094343651893e-05 0.0033325772179257306" rpy="-0.004051421860145692 0.0 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/thumb_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/thumb_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -230,16 +265,20 @@
          <inertia ixx="7.5e-07" iyy="7.1e-07" izz="3e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_thumb_pp_mesh">
-         <origin xyz="${s * 0.01772057472979195} 1.0070925191614284e-05 -0.00010493568910233946" rpy="${'-1.5398125854069626' if chirality == 'left' else '-1.6017800681828298'} -1.1287165327427504 ${'-1.5983364234733113' if chirality == 'left' else '-1.5432562301164818'}"/>
+         <origin xyz="${s * 0.01772057472979195} 1.0070925191614284e-05 -0.00010493568910233946" rpy="-1.6017800681828298 ${s * -1.1287165327427504} ${s * -1.5432562301164818}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/thumb_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/thumb_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_thumb_pp_mesh">
-         <origin xyz="${s * 0.01727473106987278} 2.0812531064334476e-05 -0.00010892038972696916" rpy="${'-1.552700627717642' if chirality == 'left' else '-1.588892025872152'} -1.3512360913096229 ${'-1.594202315837113' if chirality == 'left' else '-1.5473903377526785'}"/>
+         <origin xyz="${s * 0.01727473106987278} 2.0812531064334476e-05 -0.00010892038972696916" rpy="-1.588892025872152 ${s * -1.3512360913096229} ${s * -1.5473903377526785}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/thumb_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/thumb_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -270,30 +309,38 @@
          <inertia ixx="1.7e-06" iyy="1.64e-06" izz="5.9e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_thumb_ip_mesh">
-         <origin xyz="${s * 0.0012998948492342203} 7.159773213648307e-06 0.013619877706625217" rpy="0.0 0.04338716477372251 0.0"/>
+         <origin xyz="${s * 0.0012998948492342203} 7.159773213648307e-06 0.013619877706625217" rpy="0.0 ${s * 0.04338716477372251} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/thumb_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/thumb_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_thumb_ip_mesh">
-         <origin xyz="${s * 0.0013560375396256981} 0.00012710825491742077 0.013446327660739959" rpy="0.00708255798627546 0.04763590113115046 0.0"/>
+         <origin xyz="${s * 0.0013560375396256981} 0.00012710825491742077 0.013446327660739959" rpy="0.00708255798627546 ${s * 0.04763590113115046} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/thumb_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/thumb_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_thumb_ip_skin_mesh">
-         <origin xyz="${s * 0.0015424443589898442} 1.6522252825510055e-07 0.016259641785170875" rpy="${'0.0 -1.2480960827956862 3.141592653589793' if chirality == 'left' else '3.141592653589793 -1.2480960827956862 0.0'}"/>
+         <origin xyz="${s * 0.0015424443589898442} 1.6522252825510055e-07 0.016259641785170875" rpy="3.141592653589793 ${s * -1.2480960827956862} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/thumb_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/thumb_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_thumb_ip_skin_mesh">
-         <origin xyz="${s * 0.0015528244655451595} 6.48072440430664e-06 0.016246657621879965" rpy="${'0.0 -1.243771833702049 3.141592653589793' if chirality == 'left' else '3.141592653589793 -1.243771833702049 0.0'}"/>
+         <origin xyz="${s * 0.0015528244655451595} 6.48072440430664e-06 0.016246657621879965" rpy="3.141592653589793 ${s * -1.243771833702049} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/thumb_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/thumb_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -308,7 +355,7 @@
    <joint type="revolute" name="${prefix}thumb_pip">
       <parent link="${prefix}thumb_pp"/>
       <child link="${prefix}thumb_pip_jointbody"/>
-      <origin xyz="0.0 0.0 0.0" rpy="-2.6535897934554242e-06 ${s * 1.5707926535897934} 3.141592653589793"/>
+      <origin xyz="0.0 0.0 0.0" rpy="-2.6535897934554242e-06 ${s * 1.5707926535897934} ${s * 3.141592653589793}"/>
       <axis xyz="0.0 ${s * -1.0} 0.0"/>
       <limit lower="-0.7944" upper="1.23" effort="100" velocity="100"/>
    </joint>
@@ -326,28 +373,36 @@
       <visual name="${prefix}visual_thumb_dp_mesh">
          <origin xyz="${s * 0.001737692119750562} -5.352917438125722e-06 0.005127321105400321" rpy="0.0 ${s * 0.24698289481892632} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/thumb_dp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/thumb_dp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_thumb_dp_mesh">
-         <origin xyz="${s * 0.0020244971365026335} 3.68319791392775e-05 0.005533677984084769" rpy="${s * 0.24272423187789072} -0.008190712846545711 ${'1.5728243710815684' if chirality == 'left' else '1.5687682825082248'}"/>
+         <origin xyz="${s * 0.0020244971365026335} 3.68319791392775e-05 0.005533677984084769" rpy="0.24272423187789072 ${s * -0.008190712846545711} ${s * 1.5687682825082248}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/thumb_dp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/thumb_dp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_thumb_dp_skin_mesh">
-         <origin xyz="${s * 0.002793435568551968} -6.14386555467744e-07 0.016601042013200628" rpy="${'0.0 -0.4023979327926315 3.141592653589793' if chirality == 'left' else '3.141592653589793 -0.40239793279263236 0.0'}"/>
+         <origin xyz="${s * 0.002793435568551968} -6.14386555467744e-07 0.016601042013200628" rpy="3.141592653589793 ${s * -0.40239793279263236} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/thumb_dp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/thumb_dp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_thumb_dp_skin_mesh">
-         <origin xyz="${s * 0.002785448336058668} -6.944475247259374e-06 0.016557497442018437" rpy="${'0.0 -0.3963953079219906 3.141592653589793' if chirality == 'left' else '3.141592653589793 -0.3963953079219906 0.0'}"/>
+         <origin xyz="${s * 0.002785448336058668} -6.944475247259374e-06 0.016557497442018437" rpy="3.141592653589793 ${s * -0.3963953079219906} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/thumb_dp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/thumb_dp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -385,21 +440,25 @@
    </joint>
    <link name="${prefix}index_mp">
       <inertial>
-         <origin xyz="0.01155 0.0 -4e-05" rpy="-2.6535897932333796e-06 -1.5707926535897931 3.141592653589793"/>
+         <origin xyz="0.01155 0.0 -4e-05" rpy="-2.6535897932333796e-06 ${s * -1.5707926535897931} ${s * 3.141592653589793}"/>
          <mass value="0.00498"/>
          <inertia ixx="3.4e-07" iyy="3.1e-07" izz="2e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_index_mp_mesh">
-         <origin xyz="${'-0.010698479000335614 -1.3890654834761171e-05 -0.00027878809319396294' if chirality == 'left' else '0.010698479000335614 -1.389065483476104e-05 -0.00027878809319396305'}" rpy="${'0.011821081396553579' if chirality == 'left' else '3.1297715721932393'} -1.5066740246432395 ${'3.1415926535897905' if chirality == 'left' else '2.4424906541753444e-15'}"/>
+         <origin xyz="${s * 0.010698479000335614} -1.389065483476104e-05 -0.00027878809319396305" rpy="3.1297715721932393 ${s * -1.5066740246432395} ${s * 2.4424906541753444e-15}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/index_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/index_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_index_mp_mesh">
-         <origin xyz="${'-0.01047824184159959 -4.456734197189497e-05 -0.00016480462181888051' if chirality == 'left' else '0.01047824184159959 -4.456734197189478e-05 -0.00016480462181888062'}" rpy="${'2.2133800120128084' if chirality == 'left' else '0.928212641576985'} -1.5147947849129795 ${'0.9289651458686482' if chirality == 'left' else '2.212627507721145'}"/>
+         <origin xyz="${s * 0.01047824184159959} -4.456734197189478e-05 -0.00016480462181888062" rpy="0.928212641576985 ${s * -1.5147947849129795} ${s * 2.212627507721145}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/index_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/index_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -432,28 +491,36 @@
       <visual name="${prefix}visual_index_pp_mesh">
          <origin xyz="${s * 0.0012791981098529209} 4.322204569499314e-05 0.016098661080179" rpy="0.005516325755706635 ${s * 0.035101984887858206} ${s * 0.03910570256058449}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/index_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/index_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_index_pp_mesh">
          <origin xyz="${s * 0.0013516740131344841} 1.1247422892215125e-05 0.015681803525061735" rpy="0.0 ${s * 0.042883356216690816} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/index_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/index_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_index_pp_skin_mesh">
-         <origin xyz="${s * 0.0016617007377281573} 7.13567847691717e-08 0.018763861638214734" rpy="${'0.0 -0.8345404465359767 3.141592653589793' if chirality == 'left' else '3.141592653589793 -0.8345404465359767 0.0'}"/>
+         <origin xyz="${s * 0.0016617007377281573} 7.13567847691717e-08 0.018763861638214734" rpy="3.141592653589793 ${s * -0.8345404465359767} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/index_pp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/index_pp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_index_pp_skin_mesh">
-         <origin xyz="${s * 0.0016773866527582534} -5.5310131701629075e-06 0.018740870134460883" rpy="${'0.0 -0.8259683678608112 3.141592653589793' if chirality == 'left' else '3.141592653589793 -0.8259683678608123 0.0'}"/>
+         <origin xyz="${s * 0.0016773866527582534} -5.5310131701629075e-06 0.018740870134460883" rpy="3.141592653589793 ${s * -0.8259683678608123} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/index_pp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/index_pp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -468,7 +535,7 @@
    <joint type="revolute" name="${prefix}index_mcp">
       <parent link="${prefix}index_mp"/>
       <child link="${prefix}index_mcp_jointbody"/>
-      <origin xyz="0.0 0.0 0.0" rpy="3.141592653589793 ${s * -1.5707926535897931} 3.141592653589793"/>
+      <origin xyz="0.0 0.0 0.0" rpy="3.141592653589793 ${s * -1.5707926535897931} ${s * 3.141592653589793}"/>
       <axis xyz="0.0 ${s * -1.0} 0.0"/>
       <limit lower="-0.34907" upper="1.65806" effort="100" velocity="100"/>
    </joint>
@@ -484,30 +551,38 @@
          <inertia ixx="2.08e-06" iyy="2.06e-06" izz="5.4e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_index_ip_mesh">
-         <origin xyz="${s * 0.0010416798025929732} 7.836534536637715e-05 0.011793743862640304" rpy="${s * -0.03448776902850714} -0.0034390239986910043 ${'1.5706776757187162' if chirality == 'left' else '1.5709149778710771'}"/>
+         <origin xyz="${s * 0.0010416798025929732} 7.836534536637715e-05 0.011793743862640304" rpy="-0.03448776902850714 ${s * -0.0034390239986910043} ${s * 1.5709149778710771}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/index_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/index_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_index_ip_mesh">
-         <origin xyz="${s * 0.001264526142413497} -1.637119615337525e-05 0.01147202326458154" rpy="${s * 0.0018005943049513862} 0.0 1.5707963267948966"/>
+         <origin xyz="${s * 0.001264526142413497} -1.637119615337525e-05 0.01147202326458154" rpy="0.0018005943049513862 0.0 ${s * 1.5707963267948966}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/index_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/index_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_index_ip_skin_mesh">
          <origin xyz="${s * 0.0006177579160319044} -2.8394632435300543e-07 0.02298191534250252" rpy="0.0 ${s * -0.4563594541722644} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/index_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/index_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_index_ip_skin_mesh">
          <origin xyz="${s * 0.0006216739383467692} 2.432607491983251e-06 0.02302104994067657" rpy="0.0 ${s * -0.4457042297154219} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/index_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/index_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -550,16 +625,20 @@
          <inertia ixx="3.4e-07" iyy="3.1e-07" izz="2e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_middle_mp_mesh">
-         <origin xyz="${'-0.010698479000335614 -1.3890654834761171e-05 -0.00027878809319396294' if chirality == 'left' else '0.010698479000335614 -1.389065483476104e-05 -0.00027878809319396305'}" rpy="${'0.011821081396553579' if chirality == 'left' else '3.1297715721932393'} -1.5066740246432395 ${'3.1415926535897905' if chirality == 'left' else '2.4424906541753444e-15'}"/>
+         <origin xyz="${s * 0.010698479000335614} -1.389065483476104e-05 -0.00027878809319396305" rpy="3.1297715721932393 ${s * -1.5066740246432395} ${s * 2.4424906541753444e-15}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/middle_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/middle_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_middle_mp_mesh">
-         <origin xyz="${'-0.01047824184159959 -4.456734197189497e-05 -0.00016480462181888051' if chirality == 'left' else '0.01047824184159959 -4.456734197189478e-05 -0.00016480462181888062'}" rpy="${'2.2133800120128084' if chirality == 'left' else '0.928212641576985'} -1.5147947849129795 ${'0.9289651458686482' if chirality == 'left' else '2.212627507721145'}"/>
+         <origin xyz="${s * 0.01047824184159959} -4.456734197189478e-05 -0.00016480462181888062" rpy="0.928212641576985 ${s * -1.5147947849129795} ${s * 2.212627507721145}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/middle_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/middle_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -592,28 +671,36 @@
       <visual name="${prefix}visual_middle_pp_mesh">
          <origin xyz="${s * 0.001283421930192045} 3.6963342684240676e-05 0.02022720775953102" rpy="0.004564296284170381 ${s * 0.027656376334468602} ${s * 0.037580505677349094}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/middle_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/middle_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_middle_pp_mesh">
-         <origin xyz="${s * 0.001339380770656077} -6.845101857801683e-06 0.02011933923689832" rpy="-0.0006410664486678006 ${s * 0.029880005436222712} -5.421010862427522e-20"/>
+         <origin xyz="${s * 0.001339380770656077} -6.845101857801683e-06 0.02011933923689832" rpy="-0.0006410664486678006 ${s * 0.029880005436222712} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/middle_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/middle_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_middle_pp_skin_mesh">
          <origin xyz="${s * 0.001729699116189442} 2.0144468929163878e-08 0.022938288977938984" rpy="0.0 ${s * -0.22312530126972074} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/middle_pp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/middle_pp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_middle_pp_skin_mesh">
          <origin xyz="${s * 0.0017525848624676125} 2.7252940732883304e-06 0.022885135333659" rpy="0.0 ${s * -0.22006061767397878} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/middle_pp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/middle_pp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -628,7 +715,7 @@
    <joint type="revolute" name="${prefix}middle_mcp">
       <parent link="${prefix}middle_mp"/>
       <child link="${prefix}middle_mcp_jointbody"/>
-      <origin xyz="0.0 0.0 0.0" rpy="3.141592653589793 ${s * -1.5707926535897931} 3.141592653589793"/>
+      <origin xyz="0.0 0.0 0.0" rpy="3.141592653589793 ${s * -1.5707926535897931} ${s * 3.141592653589793}"/>
       <axis xyz="0.0 ${s * -1.0} 0.0"/>
       <limit lower="-0.34907" upper="1.58825" effort="100" velocity="100"/>
    </joint>
@@ -644,30 +731,38 @@
          <inertia ixx="2.08e-06" iyy="2.06e-06" izz="5.4e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_middle_ip_mesh">
-         <origin xyz="${s * 0.0010416798025929732} 7.836534536637715e-05 0.011793743862640304" rpy="${s * -0.03448776902850714} -0.0034390239986910043 ${'1.5706776757187162' if chirality == 'left' else '1.5709149778710771'}"/>
+         <origin xyz="${s * 0.0010416798025929732} 7.836534536637715e-05 0.011793743862640304" rpy="-0.03448776902850714 ${s * -0.0034390239986910043} ${s * 1.5709149778710771}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/middle_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/middle_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_middle_ip_mesh">
-         <origin xyz="${s * 0.001264526142413497} -1.637119615337525e-05 0.01147202326458154" rpy="0.0018005943049513862 0.0 1.5707963267948966"/>
+         <origin xyz="${s * 0.001264526142413497} -1.637119615337525e-05 0.01147202326458154" rpy="0.0018005943049513862 0.0 ${s * 1.5707963267948966}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/middle_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/middle_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_middle_ip_skin_mesh">
          <origin xyz="${s * 0.0006177579160319044} -2.8394632435300543e-07 0.02298191534250252" rpy="0.0 ${s * -0.4563594541722644} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/middle_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/middle_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_middle_ip_skin_mesh">
          <origin xyz="${s * 0.0006216739383467692} 2.432607491983251e-06 0.02302104994067657" rpy="0.0 ${s * -0.4457042297154219} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/middle_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/middle_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -693,7 +788,7 @@
    </joint>
       <link name="${prefix}middle_fingertip">
       <inertial>
-         <origin xyz="-0.009 0.0 0.035" rpy="0.0 0.0 0.0"/>
+         <origin xyz="${s * -0.009} 0.0 0.035" rpy="0.0 0.0 0.0"/>
          <mass value="0.0"/>
          <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
       </inertial>
@@ -705,21 +800,25 @@
    </joint>
    <link name="${prefix}ring_mp">
       <inertial>
-         <origin xyz="0.01155 0.0 -4e-05" rpy="-2.6535897932333796e-06 -1.5707926535897931 3.141592653589793"/>
+         <origin xyz="${s * 0.01155} 0.0 -4e-05" rpy="-2.6535897932333796e-06 ${s * -1.5707926535897931} ${s * 3.141592653589793}"/>
          <mass value="0.00498"/>
          <inertia ixx="3.4e-07" iyy="3.1e-07" izz="2e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_ring_mp_mesh">
-         <origin xyz="${'-0.010698479000335614 -1.3890654834761171e-05 -0.00027878809319396294' if chirality == 'left' else '0.010698479000335614 -1.389065483476104e-05 -0.00027878809319396305'}" rpy="${'0.011821081396553579' if chirality == 'left' else '3.1297715721932393'} -1.5066740246432395 ${'3.1415926535897905' if chirality == 'left' else '2.4424906541753444e-15'}"/>
+         <origin xyz="${s * 0.010698479000335614} -1.389065483476104e-05 -0.00027878809319396305" rpy="3.1297715721932393 ${s * -1.5066740246432395} ${s * 2.4424906541753444e-15}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/ring_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/ring_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_ring_mp_mesh">
-         <origin xyz="${'-0.01047824184159959 -4.456734197189497e-05 -0.00016480462181888051' if chirality == 'left' else '0.01047824184159959 -4.456734197189478e-05 -0.00016480462181888062'}" rpy="${'2.2133800120128084' if chirality == 'left' else '0.928212641576985'} -1.5147947849129795 ${'0.9289651458686482' if chirality == 'left' else '2.212627507721145'}"/>
+         <origin xyz="${s * 0.01047824184159959} -4.456734197189478e-05 -0.00016480462181888062" rpy="0.928212641576985 ${s * -1.5147947849129795} ${s * 2.212627507721145}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/ring_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/ring_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -752,28 +851,36 @@
       <visual name="${prefix}visual_ring_pp_mesh">
          <origin xyz="${s * 0.001283421930192045} 3.6963342684240676e-05 0.02022720775953102" rpy="0.004564296284170381 ${s * 0.027656376334468602} ${s * 0.037580505677349094}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/ring_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/ring_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_ring_pp_mesh">
-         <origin xyz="${s * 0.001339380770656077} -6.845101857801683e-06 0.02011933923689832" rpy="-0.0006410664486678006 ${s * 0.029880005436222712} ${s * -5.421010862427522e-20}"/>
+         <origin xyz="${s * 0.001339380770656077} -6.845101857801683e-06 0.02011933923689832" rpy="-0.0006410664486678006 ${s * 0.029880005436222712} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/ring_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/ring_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_ring_pp_skin_mesh">
          <origin xyz="${s * 0.001729699116189442} 2.0144468929163878e-08 0.022938288977938984" rpy="0.0 ${s * -0.22312530126972074} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/ring_pp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/ring_pp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_ring_pp_skin_mesh">
          <origin xyz="${s * 0.0017525848624676125} 2.7252940732883304e-06 0.022885135333659" rpy="0.0 ${s * -0.22006061767397878} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/ring_pp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/ring_pp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -788,7 +895,7 @@
    <joint type="revolute" name="${prefix}ring_mcp">
       <parent link="${prefix}ring_mp"/>
       <child link="${prefix}ring_mcp_jointbody"/>
-      <origin xyz="0.0 0.0 0.0" rpy="3.141592653589793 ${s * -1.5707926535897931} 3.141592653589793"/>
+      <origin xyz="0.0 0.0 0.0" rpy="3.141592653589793 ${s * -1.5707926535897931} ${s * 3.141592653589793}"/>
       <axis xyz="0.0 ${s * -1.0} 0.0"/>
       <limit lower="-0.34907" upper="1.58825" effort="100" velocity="100"/>
    </joint>
@@ -804,30 +911,38 @@
          <inertia ixx="2.08e-06" iyy="2.06e-06" izz="5.4e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_ring_ip_mesh">
-         <origin xyz="${s * 0.0010416798025929732} 7.836534536637715e-05 0.011793743862640304" rpy="${s * -0.03448776902850714} -0.0034390239986910043 ${'1.5706776757187162' if chirality == 'left' else '1.5709149778710771'}"/>
+         <origin xyz="${s * 0.0010416798025929732} 7.836534536637715e-05 0.011793743862640304" rpy="-0.03448776902850714 ${s * -0.0034390239986910043} ${s * 1.5709149778710771}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/ring_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/ring_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_ring_ip_mesh">
-         <origin xyz="${s * 0.001264526142413497} -1.637119615337525e-05 0.01147202326458154" rpy="0.0018005943049513862 0.0 1.5707963267948966"/>
+         <origin xyz="${s * 0.001264526142413497} -1.637119615337525e-05 0.01147202326458154" rpy="0.0018005943049513862 0.0 ${s * 1.5707963267948966}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/ring_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/ring_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_ring_ip_skin_mesh">
          <origin xyz="${s * 0.0006177579160319044} -2.8394632435300543e-07 0.02298191534250252" rpy="0.0 ${s * -0.4563594541722644} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/ring_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/ring_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_ring_ip_skin_mesh">
          <origin xyz="${s * 0.0006216739383467692} 2.432607491983251e-06 0.02302104994067657" rpy="0.0 ${s * -0.4457042297154219} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/ring_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/ring_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -853,7 +968,7 @@
    </joint>
       <link name="${prefix}ring_fingertip">
       <inertial>
-         <origin xyz="-0.009 0.0 0.035" rpy="0.0 0.0 0.0"/>
+         <origin xyz="${s * -0.009} 0.0 0.035" rpy="0.0 0.0 0.0"/>
          <mass value="0.0"/>
          <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
       </inertial>
@@ -865,21 +980,25 @@
    </joint>
    <link name="${prefix}pinky_mp">
       <inertial>
-         <origin xyz="0.01155 0.0 -4e-05" rpy="-2.6535897932333796e-06 -1.5707926535897931 3.141592653589793"/>
+         <origin xyz="${s * 0.01155} 0.0 -4e-05" rpy="-2.6535897932333796e-06 ${s * -1.5707926535897931} ${s * 3.141592653589793}"/>
          <mass value="0.00498"/>
          <inertia ixx="3.4e-07" iyy="3.1e-07" izz="2e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_pinky_mp_mesh">
-         <origin xyz="${'-0.010698479000335614 -1.3890654834761171e-05 -0.00027878809319396294' if chirality == 'left' else '0.010698479000335614 -1.389065483476104e-05 -0.00027878809319396305'}" rpy="${'0.011821081396553579' if chirality == 'left' else '3.1297715721932393'} -1.5066740246432395 ${'3.1415926535897905' if chirality == 'left' else '2.4424906541753444e-15'}"/>
+         <origin xyz="${s * 0.010698479000335614} -1.389065483476104e-05 -0.00027878809319396305" rpy="3.1297715721932393 ${s * -1.5066740246432395} ${s * 2.4424906541753444e-15}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/pinky_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/pinky_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_pinky_mp_mesh">
-         <origin xyz="${'-0.01047824184159959 -4.456734197189497e-05 -0.00016480462181888051' if chirality == 'left' else '0.01047824184159959 -4.456734197189478e-05 -0.00016480462181888062'}" rpy="${'2.2133800120128084' if chirality == 'left' else '0.928212641576985'} -1.5147947849129795 ${'0.9289651458686482' if chirality == 'left' else '2.212627507721145'}"/>
+         <origin xyz="${s * 0.01047824184159959} -4.456734197189478e-05 -0.00016480462181888062" rpy="0.928212641576985 ${s * -1.5147947849129795} ${s * 2.212627507721145}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/pinky_mp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/pinky_mp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -912,28 +1031,36 @@
       <visual name="${prefix}visual_pinky_pp_mesh">
          <origin xyz="${s * 0.0012998948492342203} 7.159773213648307e-06 0.013619877706625217" rpy="0.0 ${s * 0.04338716477372251} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/pinky_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/pinky_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_pinky_pp_mesh">
          <origin xyz="${s * 0.0013560375396256981} 0.00012710825491742077 0.013446327660739959" rpy="0.00708255798627546 ${s * 0.04763590113115046} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/pinky_pp_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/pinky_pp_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_pinky_pp_skin_mesh">
-         <origin xyz="${s * 0.0015424443589898442} 1.6522252825510055e-07 0.016259641785170875" rpy="${'0.0 -1.2480960827956862 3.141592653589793' if chirality == 'left' else '3.141592653589793 -1.2480960827956862 0.0'}"/>
+         <origin xyz="${s * 0.0015424443589898442} 1.6522252825510055e-07 0.016259641785170875" rpy="3.141592653589793 ${s * -1.2480960827956862} ${s * 0.0}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/pinky_pp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/pinky_pp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_pinky_pp_skin_mesh">
-         <origin xyz="${s * 0.0015528244655451595} 6.48072440430664e-06 0.016246657621879965" rpy="${'0.0 -1.2437718337020485 3.141592653589793' if chirality == 'left' else '3.141592653589793 -1.243771833702049 0.0'}"/>
+         <origin xyz="${s * 0.0015528244655451595} 6.48072440430664e-06 0.016246657621879965" rpy="3.141592653589793 ${s * -1.243771833702049} ${s * 0.0}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/pinky_pp_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/pinky_pp_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
@@ -948,7 +1075,7 @@
    <joint type="revolute" name="${prefix}pinky_mcp">
       <parent link="${prefix}pinky_mp"/>
       <child link="${prefix}pinky_mcp_jointbody"/>
-      <origin xyz="0.0 0.0 0.0" rpy="3.141592653589793 ${s * -1.5707926535897931} 3.141592653589793"/>
+      <origin xyz="0.0 0.0 0.0" rpy="3.141592653589793 ${s * -1.5707926535897931} ${s * 3.141592653589793}"/>
       <axis xyz="0.0 ${s * -1.0} 0.0"/>
       <limit lower="-0.34907" upper="1.71042" effort="100" velocity="100"/>
    </joint>
@@ -964,30 +1091,38 @@
          <inertia ixx="2.08e-06" iyy="2.06e-06" izz="5.4e-07" ixy="0" ixz="0" iyz="0"/>
       </inertial>
       <visual name="${prefix}visual_pinky_ip_mesh">
-         <origin xyz="${s * 0.0010416798025929732} 7.836534536637715e-05 0.011793743862640304" rpy="${s * -0.03448776902850714} -0.0034390239986910043 ${'1.5706776757187162' if chirality == 'left' else '1.5709149778710771'}"/>
+         <origin xyz="${s * 0.0010416798025929732} 7.836534536637715e-05 0.011793743862640304" rpy="-0.03448776902850714 ${s * -0.0034390239986910043} ${s * 1.5709149778710771}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/pinky_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/pinky_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_pinky_ip_mesh">
-         <origin xyz="${s * 0.001264526142413497} -1.637119615337525e-05 0.01147202326458154" rpy="${s * 0.0018005943049513862} 0.0 1.5707963267948966"/>
+         <origin xyz="${s * 0.001264526142413497} -1.637119615337525e-05 0.01147202326458154" rpy="0.0018005943049513862 0.0 ${s * 1.5707963267948966}"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/pinky_ip_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/pinky_ip_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>
       <visual name="${prefix}visual_pinky_ip_skin_mesh">
          <origin xyz="${s * 0.0006177579160319044} -2.8394632435300543e-07 0.02298191534250252" rpy="0.0 ${s * -0.4563594541722644} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/visual/pinky_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/visual/pinky_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </visual>
       <collision name="${prefix}collision_pinky_ip_skin_mesh">
          <origin xyz="${s * 0.0006216739383467692} 2.432607491983251e-06 0.02302104994067657" rpy="0.0 ${s * -0.4457042297154219} 0.0"/>
          <geometry>
-            <mesh filename="${rospackage_path}/collision/pinky_ip_skin_mesh.stl"/>
+            <mesh filename="${rospackage_path}/collision/pinky_ip_skin_mesh.stl"
+            scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
+            />
          </geometry>
          <material name="white"/>
       </collision>

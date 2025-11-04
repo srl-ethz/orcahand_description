@@ -9,7 +9,7 @@
   <xacro:property name="extension" value="$(arg extension)"/>
   <xacro:property name="chirality" value="$(arg chirality)"/>
   <xacro:property name="s" value="${-1 if chirality == 'left' else 1}"/>
-  <xacro:property name="rospackage_path" value="package://orcahand_description/assets/urdf/right"/>
+  <xacro:property name="rospackage_path" value="package://orcahand_description/assets/urdf"/>
 
    <link name="${prefix}root">
       <inertial>
@@ -27,7 +27,7 @@
       <visual name="visual_tower_main_mesh">
          <origin xyz="${s * 0.04069509610470536} -0.00012511806280993186 0.02312294830988657" rpy="-0.007252153364137093 ${s * -0.004356332895580239} ${s * 1.533990149039079}"/>
          <geometry>
-            <mesh filename="package://orcahand_description/assets/urdf/right/visual/tower_main_mesh.stl"
+            <mesh filename="package://orcahand_description/assets/urdf/visual/tower_main_mesh.stl"
                   scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"
             />
          </geometry>
@@ -119,7 +119,7 @@
       <visual name="visual_tower_camera_mesh">
          <origin xyz="${s * 0.04141561887638722} 0.052825801794652016 -0.019856742052109723" rpy="-3.066013393320364 ${s * -1.0811766886677918} ${s * -1.6762365509261419}"/>
          <geometry>
-            <mesh filename="package://orcahand_description/assets/urdf/right/visual/tower_camera_mesh.stl"
+            <mesh filename="package://orcahand_description/assets/urdf/visual/tower_camera_mesh.stl"
              scale="${'-1 1 1' if chirality == 'left' else '1 1 1'}"/>
          </geometry>
          <material name="white"/>
@@ -433,7 +433,7 @@
          <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
       </inertial>
    </link>
-   <joint type="fixed" name="thumb_dp2right_thumb_fingertip_fixed_offset">
+   <joint type="fixed" name="${prefix}thumb_dp2thumb_fingertip_fixed_offset">
       <parent link="${prefix}thumb_dp"/>
       <child link="${prefix}thumb_fingertip"/>
          <origin xyz="${s * -0.003} 0.0 0.025" rpy="0.0 0.0 0.0"/>
@@ -613,7 +613,7 @@
          <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
       </inertial>
    </link>
-   <joint type="fixed" name="${prefix}index_ip2right_index_fingertip_fixed_offset">
+   <joint type="fixed" name="${prefix}index_ip2index_fingertip_fixed_offset">
       <parent link="${prefix}index_ip"/>
       <child link="${prefix}index_fingertip"/>
       <origin xyz="${s * -0.009} 0.0 0.035" rpy="0.0 0.0 0.0"/>
@@ -793,7 +793,7 @@
          <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
       </inertial>
    </link>
-   <joint type="fixed" name="${prefix}middle_ip2right_index_fingertip_fixed_offset">
+   <joint type="fixed" name="${prefix}middle_ip2middle_fingertip_fixed_offset">
       <parent link="${prefix}middle_ip"/>
       <child link="${prefix}middle_fingertip"/>
       <origin xyz="${s * -0.009} 0.0 0.035" rpy="0.0 0.0 0.0"/>
@@ -973,7 +973,7 @@
          <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
       </inertial>
    </link>
-   <joint type="fixed" name="${prefix}ring_ip2right_index_fingertip_fixed_offset">
+   <joint type="fixed" name="${prefix}ring_ip2ring_fingertip_fixed_offset">
       <parent link="${prefix}ring_ip"/>
       <child link="${prefix}ring_fingertip"/>
       <origin xyz="${s * -0.009} 0.0 0.035" rpy="0.0 0.0 0.0"/>
@@ -1153,7 +1153,7 @@
          <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0" ixz="0" iyz="0"/>
       </inertial>
    </link>
-   <joint type="fixed" name="${prefix}pinky_ip2right_index_fingertip_fixed_offset">
+   <joint type="fixed" name="${prefix}pinky_ip2pinky_fingertip_fixed_offset">
       <parent link="${prefix}pinky_ip"/>
       <child link="${prefix}pinky_fingertip"/>
       <origin xyz="${s * -0.009} 0.0 0.035" rpy="0.0 0.0 0.0"/>

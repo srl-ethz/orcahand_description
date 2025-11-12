@@ -1,54 +1,24 @@
 cmake_minimum_required(VERSION 3.10)
 project(orcahand_description)
 
-if(NOT DEFINED ENV{ROS_VERSION} OR "$ENV{ROS_VERSION}" STREQUAL "1")
-  message(STATUS "Detected ROS 1")
+find_package(ament_cmake REQUIRED)
+find_package(urdf REQUIRED)
+find_package(xacro REQUIRED)
 
-  find_package(catkin REQUIRED COMPONENTS
-    urdf
-    xacro
-  )
+install(DIRECTORY models/urdf
+  DESTINATION share/${PROJECT_NAME}
+)
 
-  catkin_package()
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}/
+)
 
-  include_directories(
-    ${catkin_INCLUDE_DIRS}
-  )
+install(DIRECTORY assets
+  DESTINATION share/${PROJECT_NAME}/
+)
 
-  install(DIRECTORY urdf/
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
-  )
+install(DIRECTORY rviz
+  DESTINATION share/${PROJECT_NAME}/
+)
 
-  install(DIRECTORY meshes/
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes
-  )
-
-  install(DIRECTORY launch/
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
-  )
-
-else()
-  message(STATUS "Detected ROS 2")
-
-  find_package(ament_cmake REQUIRED)
-  find_package(urdf REQUIRED)
-  find_package(xacro REQUIRED)
-
-  install(DIRECTORY models/urdf
-    DESTINATION share/${PROJECT_NAME}
-  )
-
-  install(DIRECTORY launch
-    DESTINATION share/${PROJECT_NAME}/
-  )
-
-  install(DIRECTORY assets
-    DESTINATION share/${PROJECT_NAME}/
-  )
-
-  install(DIRECTORY rviz
-    DESTINATION share/${PROJECT_NAME}/
-  )
-
-  ament_package()
-endif()
+ament_package()

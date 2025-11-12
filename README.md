@@ -7,7 +7,7 @@
 
 This repository contains the description files for the Orcahand model (Both URDF and MJCF). The 'extended' version contains additional bodies (incl. inertial properties) such as the camera mount, the U2D2 board and fans.
 
-## Example Usage
+## Example Usage: Visualize MJCF
 1. Clone the repository:
    ```bash
    git clone git@github.com:orcahand/orcahand_description.git
@@ -21,6 +21,24 @@ This repository contains the description files for the Orcahand model (Both URDF
    ```bash
    python3 -m mujoco.viewer --mjcf=scene_combined.xml
    ```
+
+## Example Usage: Visualize URDF in RViz
+1. Clone the repository to your ROS2 workspace
+   ```bash
+   cd ~/ros2_ws/src
+   git clone git@github.com:orcahand/orcahand_description.git
+   ```
+2. Build the workspace and source it
+   ```bash
+   cd ~/ros2_ws
+   colcon build --symlink-install
+   source ~/ros2_ws/install/setup.bash
+   ```
+3. Launch the sample script
+   ```bash
+   ros2 launch orcahand_description orcahand_xacro.launch.py chirality:=right
+   ```
+   Rviz2 opens and you can modify the joint angles with the slider.
 
 ## Note on Meshes
 Visual meshes contain the following amount of faces:

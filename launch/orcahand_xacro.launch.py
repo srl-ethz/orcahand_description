@@ -9,9 +9,11 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
+from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-
+import xacro
+import os
 def generate_launch_description():
     # Example usages:
     # - ros2 launch orcahand_description orcahand.launch.py
@@ -20,8 +22,14 @@ def generate_launch_description():
     # Launch argument for URDF filename
     urdf_file_arg = DeclareLaunchArgument(
         'urdf_file',
-        default_value='orcahand_right.urdf',
+        default_value='orcahand.urdf.xacro',
         description='URDF file to load from the orcahand_description/urdf directory'
+    )
+
+    chirality_arg = DeclareLaunchArgument(
+        'chirality',
+        default_value='right',
+        description='right or left'
     )
 
     # Construct the full path to the URDF/XACRO file using the argument
@@ -38,24 +46,30 @@ def generate_launch_description():
         'config.rviz'
     ])
 
+    robot_description = Command([
+        'xacro ', orcahand_description_path, 
+        ' chirality:=', LaunchConfiguration('chirality'),
+        ' prefix:=', "",
+        ' extension:=', "true",
+    ])
+
+
     return LaunchDescription([
         urdf_file_arg,
-
+        chirality_arg,
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
             parameters=[{
-                'robot_description': Command([
-                    'xacro ', orcahand_description_path
-                ])
+                'robot_description': robot_description
             }],
         ),
 
         Node(
-            package='joint_state_publisher',
-            executable='joint_state_publisher',
+            package='joint_state_publisher_gui',
+            executable='joint_state_publisher_gui',
             name='joint_state_publisher',
             output='screen',
         ),

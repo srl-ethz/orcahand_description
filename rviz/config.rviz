@@ -264,7 +264,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: tower
+    Fixed Frame: root
     Frame Rate: 30
   Name: world
   Tools:
